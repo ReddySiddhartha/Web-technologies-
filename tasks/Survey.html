@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2e0505;
+            padding: 20px;
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px;
+            margin: auto;
+            background: #b84949;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 8px;
+        }
+
+        #submit {
+            background-color: #2196f3;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        h1{
+            color: white;
+           
+        }
+    </style>
+</head>
+
+<body>
+    <h1>SURVEY FORM</h1>
+    <p>This questionnaire is part of a study of computer usage. Your participation in this study is voluntary, and your
+        answers will form part of a statistical study and will not identify you as an individual.</p>
+
+    <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter Name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter Email" required>
+
+        <label for="age">Number:</label>
+        <select id="age" name="age" required>
+            <option value="">Select Age</option>
+            <option value="10-20">10-20</option>
+            <option value="21-30">21-30</option>
+            <option value="31-40">31-40</option>
+            <option value="41-50">41-50</option>
+            <option value="51+">51+</option>
+        </select>
+
+        <label for="skill">Skill Level</label>
+        <select id="skill" name="skill" required>
+            <option value="">No knowledge</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+        </select>
+
+        <p>Which is your favorite OS?</p>
+        <input type="radio" id="linux" name="os" value="Linux"> <label for="linux">GNU/Linux</label>
+        <input type="radio" id="mac" name="os" value="MacOS"> <label for="mac">Mac OS</label>
+        <input type="radio" id="windows" name="os" value="Windows"> <label for="windows">Windows</label>
+        <input type="radio" id="freebsd" name="os" value="FreeBSD"> <label for="freebsd">FreeBSD</label>
+
+        <p>Which hardware do you own?</p>
+        <input type="checkbox" id="desktop" name="hardware" value="Desktop"> <label for="desktop">Desktop</label><br>
+        <input type="checkbox" id="laptop" name="hardware" value="Laptop"> <label for="laptop">Laptop</label><br>
+        <input type="checkbox" id="mini" name="hardware" value="Mini-PC"> <label for="mini">Mini-PC</label><br>
+        <input type="checkbox" id="server" name="hardware" value="Server"> <label for="server">Server</label><br>
+        <input type="checkbox" id="sbc" name="hardware" value="Single Board Computer"> <label for="sbc">Single Board
+            Computer</label><br>
+
+        <textarea name="details" rows="5" placeholder="Additional Details"></textarea>
+
+        <input type="submit" id="submit" value="SUBMIT">
+    </form>
+
+    <p>created by <a href="#">brandon wallace</a></p>
+</body>
+
+</html>

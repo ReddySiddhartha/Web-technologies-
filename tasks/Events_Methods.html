@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS Events and Methods</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center; /* center everything */
+            margin-top: 40px;  /* push content down */
+        }
+        h3 {
+            margin-bottom: 20px;
+        }
+        button, input {
+            margin: 10px; /* spacing between elements */
+        }
+        #box {
+            width: 120px;
+            height: 60px;
+            background-color: lightblue;
+            text-align: center;
+            line-height: 60px;
+            margin: 20px auto;
+        }
+        #msg, #output {
+            margin: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h3>JS Events and Methods Demo</h3>
+
+    <!-- onclick event + innerHTML method -->
+    <button onclick="showMessage()">Click</button>
+    <p id="msg"></p>
+
+    <!-- ondblclick event + alert method -->
+    <button ondblclick="doubleClick()">Double Click</button>
+
+    <!-- onmouseover & onmouseout events + style method -->
+    <div id="box" onmouseover="changeColor()" onmouseout="resetColor()">
+        Hover
+    </div>
+
+    <!-- onkeyup event + value method -->
+    <input type="text" id="textBox" onkeyup="showInput()" placeholder="Type">
+    <p id="output"></p>
+
+    <script>
+        function showMessage() {
+            document.getElementById("msg").innerHTML = "Button Clicked!";
+        }
+
+        function doubleClick() {
+            alert("Double Click Event Triggered!");
+        }
+
+        function changeColor() {
+            document.getElementById("box").style.backgroundColor = "orange";
+        }
+
+        function resetColor() {
+            document.getElementById("box").style.backgroundColor = "lightblue";
+        }
+
+        function showInput() {
+            let text = document.getElementById("textBox").value;
+            document.getElementById("output").innerHTML = "Input: " + text;
+        }
+    </script>
+
+</body>
+</html>

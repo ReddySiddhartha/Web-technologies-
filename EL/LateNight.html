@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Late Night Travel Safety</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        input, button { padding: 10px; margin: 5px 0; width: 100%; }
+        .ride-card { background: #fff; padding: 15px; margin-top: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .btn { background: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .btn:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>Late Night Travel Booking</h1>
+    
+    <input type="text" id="pickupInput" placeholder="Enter Pickup Location">
+    <input type="text" id="dropInput" placeholder="Enter Drop Location">
+    <button id="bookRideBtn">Book Ride</button>
+
+    <div id="rides"></div>
+
+    <script>
+        let rideCount = 0;
+        let pickupCoords = { lat: 12.9716, lng: 77.5946 }; // Example coords, replace with real selection logic
+        let dropCoords = { lat: 12.9352, lng: 77.6245 };   // Example coords, replace with real selection logic
+
+        // Late Night Travel Safety
+        function isLateNightTravel() {
+            const now = new Date();
+            const hour = now.getHours();
+            return hour >= 22 || hour < 6;
+        }
+
+        document.getElementById('bookRideBtn').addEventListener('click', () => {
+            const pickupInput = document.getElementById('pickupInput');
+            const dropInput = document.getElementById('dropInput');
+
+            if(!pickupInput.value || !dropInput.value) 
+                return alert("Please enter both pickup and drop locations!");
+
+            const lateNight = isLateNightTravel();
+            if(lateNight) {
+                alert("⚠️ Late Night Travel Detected! Stay safe, share your ride details with a friend.");
+
+                // Optional: Send alert to Firebase Emergency Log
+                const userId = localStorage.getItem('uid') || "testUser"; 
+                const travelTime = new Date().toISOString();
+                const emergencyData = {
+                    user: userId,
+                    pickup: pickupInput.value,
+                    drop: dropInput.value,
+                    coords: { pickup: pickupCoords, drop: dropCoords },
+                    time: travelTime,
+                    type: "lateNight"
+                };
+                import('https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js').then(module => {
+                    const { doc, setDoc, getFirestore } = module;
+                    const db = getFirestore();
+                    setDoc(doc(db, "lateNightLogs", userId+"_"+Date.now()), emergencyData)
+                      .then(()=> console.log("Late Night Travel logged in Firebase"))
+                      .catch(e => console.error("Error logging late night travel:", e));
+                });
+            }
+
+            // Normal ride booking logic
+            rideCount++;
+            const R = 6371;
+            const dLat = (dropCoords.lat - pickupCoords.lat) * Math.PI/180;
+            const dLon = (dropCoords.lng - pickupCoords.lng) * Math.PI/180;
+            const a = Math.sin(dLat/2)*2 + Math.cos(pickupCoords.lat*Math.PI/180) * Math.cos(dropCoords.lat*Math.PI/180) * Math.sin(dLon/2)*2;
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            const distance = R * c;
+            const fare = Math.round(distance*13);
+
+            const rideCard = document.createElement('div');
+            rideCard.className = "ride-card";
+            rideCard.innerHTML = `
+                <h2>${pickupInput.value} ➝ ${dropInput.value}</h2>
+                <p>Driver: Driver ${rideCount}</p>
+                <p>Distance: ${distance.toFixed(2)} km</p>
+                <p>Fare: ₹${fare}</p>
+                ${lateNight ? '<button class="btn" id="trackBtn">🚨 Track Ride</button>' : '<button class="btn">Track Ride</button>'}
+            `;
+            const ridesDiv = document.getElementById('rides');
+            ridesDiv.innerHTML='';
+            ridesDiv.appendChild(rideCard);
+
+            if(lateNight){
+                document.getElementById('trackBtn').addEventListener('click', () => {
+                    alert("Live ride tracking activated! Share your location with a friend for safety.");
+                });
+            }
+        });
+    </script>
+</body>
+</html>

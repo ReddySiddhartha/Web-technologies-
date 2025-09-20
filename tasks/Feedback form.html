@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Feedback Form</title>
+    <style>
+        body {
+            background-color: #e3f2fd;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            background-color: #1565c0;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            background-color: #90caf9;
+            color: #0d47a1;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        form {
+            width: 70%;
+            margin-left: 15%;
+            margin-right: 15%;
+            padding: 30px;
+            background-color: white;
+            border: 2px solid #1565c0;
+            border-radius: 15px;
+        }
+
+        table {
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+            border-collapse: collapse;
+        }
+
+        td {
+            text-align: center;
+            border: 2px solid #0d47a1;
+            padding: 15px;
+        }
+
+        th {
+            border: 2px solid #0d47a1;
+            padding: 15px;
+            background-color: #1976d2;
+            color: white;
+        }
+
+        #x {
+            text-align: left;
+            font-weight: bold;
+            color: #0d47a1;
+        }
+
+        #button {
+            width: 120px;
+            height: 45px;
+            border-radius: 10px;
+            margin-top: 30px;
+            background-color: #1e88e5;
+            color: white;
+            font-size: 15px;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Bus Journey Feedback Form</h1>
+
+    <form>
+        <h2>Your Feedback Matters</h2>
+        <h4>Did you feel safe during your bus journey?</h4>
+        <input type="radio" id="1" name="1">
+        <label for="1">Yes</label>
+        <input type="radio" id="2" name="1">
+        <label for="2">No</label>
+        <input type="radio" id="3" name="1">
+        <label for="3">I don't know</label>
+
+        <h4>Was the bus staff cooperative and helpful?</h4>
+        <input type="radio" id="4" name="2">
+        <label for="4">Yes</label>
+        <input type="radio" id="5" name="2">
+        <label for="5">No</label>
+
+        <h4>Other Feedback :</h4>
+        <table>
+            <tr>
+                <th></th>
+                <th>Very Good</th>
+                <th>Good</th>
+                <th>Fair</th>
+                <th>Poor</th>
+                <th>Very Poor</th>
+            </tr>
+            <tr>
+                <td id="x">Comfort and cleanliness of bus</td>
+                <td><input type="radio" name="3"></td>
+                <td><input type="radio" name="3"></td>
+                <td><input type="radio" name="3"></td>
+                <td><input type="radio" name="3"></td>
+                <td><input type="radio" name="3"></td>
+            </tr>
+            <tr>
+                <td id="x">Punctuality and adherence to schedule</td>
+                <td><input type="radio" name="4"></td>
+                <td><input type="radio" name="4"></td>
+                <td><input type="radio" name="4"></td>
+                <td><input type="radio" name="4"></td>
+                <td><input type="radio" name="4"></td>
+            </tr>
+            <tr>
+                <td id="x">Driver’s behavior and professionalism</td>
+                <td><input type="radio" name="5"></td>
+                <td><input type="radio" name="5"></td>
+                <td><input type="radio" name="5"></td>
+                <td><input type="radio" name="5"></td>
+                <td><input type="radio" name="5"></td>
+            </tr>
+        </table>
+
+        <h4>Overall journey experience</h4>
+        <select>
+            <option>--Select Rating--</option>
+            <option value="1">⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="5">⭐⭐⭐⭐⭐</option>
+        </select><br>
+
+        <button id="button"><b>Submit Form</b></button>
+    </form>
+</body>
+
+</html>
